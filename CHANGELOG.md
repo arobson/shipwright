@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.2](https://github.com/arobson/shipwright/compare/v1.7.1...v1.7.2) (2021-06-12)
+
+
+### Bug Fixes
+
+* remove functionality around cutting PRs ([adcfd11](https://github.com/arobson/shipwright/commit/adcfd11956dcfc86948bbe4336930085a40ebd1c))
+
 ### [1.7.1](https://github.com/arobson/shipwright/compare/v1.7.0...v1.7.1) (2021-06-12)
 
 
