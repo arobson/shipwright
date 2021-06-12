@@ -108,22 +108,6 @@ This flag will append the `latest` tag to your current image and attempt to use 
 
 This argument allows you to provide your own full specification to shipwright that it will then pass through to Docker.
 
-## `updateWith` - Instruction Files & PR Plugins
-The `updateWith` argument is way to plug in your own transformers after the fact to get shipwright to send a PR to another GitHub repository in order to update a single file.
-
-This uses [github-change-remote-file](https://github.com/boennemann/github-change-remote-file) so the limitation here is that it can change 1 file at a time. The transformer plugin you write will get passed a `buildInfo` hash with all the context of the build and the instruction file with any static arguments you'd like to pass it.
-
-### plugin format
-The plugin module should export a function that takes the build information and instruction file content and returns a function that transforms the target file's contents (passed as a string) and returns the changed content.
-```js
-module.exports = function( buildInfo, instructions ) {
-    return function( raw ) {
-      // do something to the file
-      return changedContent;
-    };
-}
-```
-
 ### instruction file
 You can provide an instruction file in either JSON or YAML.
 

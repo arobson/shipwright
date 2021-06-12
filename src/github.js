@@ -2,33 +2,6 @@ const fs = require('fs')
 const yaml = require('js-yaml')
 const path = require('path')
 
-function createPR (log, githubChangeFile, buildInfo, options) {
-  return new Promise((resolve, reject) => {
-    log(`Creating pull request to '${options.source.owner}/${options.source.repo}:${options.source.branch || 'master'}' to change file '${options.source.file}'`)
-    githubChangeFile({
-      user: options.source.owner,
-      repo: options.source.repo,
-      filename: options.source.file,
-      branch: options.source.branch || 'master',
-      newBranch: options.branch || [ 'update', buildInfo.owner, buildInfo.repository, buildInfo.branch ].join('-'),
-      transform: options.transform,
-      token: process.env.GITHUB_API_TOKEN
-    })
-    .then(
-      result => {
-        resolve(result)
-      }
-    )
-    .catch(
-      error => {
-        reject(new Error(
-          `Failed to create PR to '${options.source.owner}/${options.source.repo}:${options.source.branch}' to update file '${options.source.file}' due to error: ${error.message}`
-        ))
-      }
-    )
-  })
-}
-
 function getOptions (log, changeFile) {
   const fullPath = path.resolve(changeFile)
   return new Promise((resolve, reject) => {
@@ -85,25 +58,11 @@ function onLoadModuleFailed (log, error) {
   throw error
 }
 
-function updateWith (log, githubChangeFile, buildInfo, changeFile) {
-  return getOptions(log, changeFile)
-    .then(
-      loadModule.bind(null, log, buildInfo),
-      onGetOptionsFailed.bind(null, log)
-    )
-    .then(
-      createPR.bind(null, log, githubChangeFile, buildInfo),
-      onLoadModuleFailed.bind(null, log)
-    )
-}
-
-module.exports = function (log, githubChangeFile) {
+module.exports = function (log) {
   return {
-    createPR: createPR.bind(null, log, githubChangeFile),
     getOptions: getOptions.bind(null, log),
     loadModule: loadModule.bind(null, log),
     onGetOptionsFailed: onGetOptionsFailed.bind(null, log),
-    onLoadModuleFailed: onLoadModuleFailed.bind(null, log),
-    updateWith: updateWith.bind(null, log, githubChangeFile)
+    onLoadModuleFailed: onLoadModuleFailed.bind(null, log)
   }
 }
