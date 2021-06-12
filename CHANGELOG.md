@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.3](https://github.com/arobson/shipwright/compare/v1.7.2...v1.7.3) (2021-06-12)
+
+
+### Bug Fixes
+
+* use correct pequod package ([4cb5419](https://github.com/arobson/shipwright/commit/4cb54193995a2ef12c48ba92c30fa980fa33a21c))
+
 ### [1.7.2](https://github.com/arobson/shipwright/compare/v1.7.1...v1.7.2) (2021-06-12)
 
 
