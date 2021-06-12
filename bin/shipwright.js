@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var format = require('util').format
 var goggles = require('buildgoggles')
-var pequod = require('pequod')
+var pequod = require('@viperidae/pequod')
 var docker = function (sudo) {
   return pequod(sudo, dockerLog)
 }
