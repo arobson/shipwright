@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.7.1](https://github.com/arobson/shipwright/compare/v1.7.0...v1.7.1) (2021-06-12)
+
+
+### Bug Fixes
+
+* use correct buildgoggles package ([238324c](https://github.com/arobson/shipwright/commit/238324cd153b9d895e08ae93ee2926734a5f1ec3))
 
 <a name="1.6.4"></a>
 ## [1.6.4](https://github.com/npm-wharf/shipwright/compare/v1.6.2...v1.6.4) (2020-06-10)
