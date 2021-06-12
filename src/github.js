@@ -1,10 +1,9 @@
 const fs = require('fs')
 const yaml = require('js-yaml')
 const path = require('path')
-const when = require('when')
 
 function createPR (log, githubChangeFile, buildInfo, options) {
-  return when.promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     log(`Creating pull request to '${options.source.owner}/${options.source.repo}:${options.source.branch || 'master'}' to change file '${options.source.file}'`)
     githubChangeFile({
       user: options.source.owner,
@@ -32,7 +31,7 @@ function createPR (log, githubChangeFile, buildInfo, options) {
 
 function getOptions (log, changeFile) {
   const fullPath = path.resolve(changeFile)
-  return when.promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     if (!fs.existsSync(fullPath)) {
       reject(new Error(`Invalid change file path specified '${fullPath}'`))
     } else {
@@ -57,7 +56,7 @@ function getOptions (log, changeFile) {
 }
 
 function loadModule (log, buildInfo, options) {
-  return when.promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     var modulePath
     try {
       modulePath = require.resolve(options.module)

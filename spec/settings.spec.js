@@ -1,7 +1,6 @@
 require('./setup.js')
 const fs = require('fs')
 const path = require('path')
-const when = require('when')
 
 const goggles = {
   getInfo: function () {}
@@ -19,7 +18,7 @@ describe('Settings', function () {
         gogglesMock
           .expects('getInfo')
           .withArgs({ repo: path.resolve('./'), tags: undefined })
-          .returns(when({}))
+          .returns(Promise.resolve({}))
           .once()
       })
 
@@ -38,7 +37,7 @@ describe('Settings', function () {
     })
 
     it('should get default name', function () {
-      settings.getDefaultName({ path: path.resolve('./') }).should.equal('@npm-wharf/shipwright')
+      settings.getDefaultName({ path: path.resolve('./') }).should.equal('@viperidae/shipwright')
     })
 
     it('should get default tags when tagged', function () {

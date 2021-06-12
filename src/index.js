@@ -2,7 +2,6 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 const uuid = require('uuid')
-const when = require('when')
 const DEFAULT_REGISTRY = 'https://hub.docker.com'
 const MB = 1048576
 
@@ -31,7 +30,7 @@ function buildImage (log, settings, goggles, dockerFactory, options) {
   })
   const flatten = options.flatten
   let cacheFrom
-  let preBuild = () => when({})
+  let preBuild = () => Promise.resolve({})
 
   const baseTagName = sanitizeTag(name)
   const baseImage = [ namePrefix, baseTagName, namePostfix ].join('')
@@ -55,7 +54,7 @@ function buildImage (log, settings, goggles, dockerFactory, options) {
 
   if (ltsOnly && !defaultInfo.isLTS) {
     log(`Skipping build - Node version (${process.version}) is not LTS`)
-    return when({})
+    return Promise.resolve({})
   }
 
   let progress
@@ -286,7 +285,7 @@ function onWriteInfoFailed (log, writeError) {
 function pushImage (log, docker, noPush, imageName, info) {
   if ((info && info.continue === false) || noPush) {
     log('Skipping push image.')
-    return when(info)
+    return Promise.resolve(info)
   } else {
     log('Pushing image.')
     return docker.pushTags(imageName)
@@ -303,7 +302,7 @@ function pushImage (log, docker, noPush, imageName, info) {
 function tagImage (log, docker, skipPRs, imageName, info) {
   if ((skipPRs && info.ci && info.ci.pullRequest) || (info && info.continue === false)) {
     log('Skipping tag & push.')
-    return when({ continue: false })
+    return Promise.resolve({ continue: false })
   } else {
     log('Tagging image.')
     return docker.tagImage(imageName)
@@ -347,18 +346,18 @@ function writeBuildInfo (log, goggles, workingPath, imageName, tags, info) {
   } else {
     log('No tags were specified, skipping tag and push.')
     log(`branch - ${info.branch}, PR - ${info.ci.pullRequest}, tagged - ${info.ci.tagged}`)
-    return when({ continue: false })
+    return Promise.resolve({ continue: false })
   }
 }
 
 function writeImageFile (log, imageFile, imageName, info) {
   if (info && info.continue === false) {
     log('Skipping write of image file information.')
-    return when(info)
+    return Promise.resolve(info)
   } else {
     log(`Writing image file to '${imageFile}'.`)
     info.imageName = imageName
-    return when.promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const json = JSON.stringify({
         image: imageName,
         tags: info.tag

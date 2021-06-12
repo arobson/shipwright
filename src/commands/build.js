@@ -1,5 +1,3 @@
-const when = require('when')
-
 function build (info, settings) {
   const set = {
     repo: {
@@ -163,7 +161,7 @@ function handle (shipwright, github, info, argv) {
 function updateWith (github, buildInfo, argv) {
   const files = [].concat(argv.updateWith)
   const update = github.updateWith.bind(null, buildInfo)
-  when.all(files.map(update))
+  Promise.all(files.map(update))
     .then(
       () => process.exit(0),
       () => process.exit(1)

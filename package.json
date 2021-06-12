@@ -1,32 +1,29 @@
 {
-  "name": "@npm-wharf/shipwright",
-  "version": "1.6.6",
+  "name": "@viperidae/shipwright",
+  "version": "1.7.0",
   "description": "artifact packaging for service builds",
   "main": "src/index.js",
   "bin": {
     "shipwright": "./bin/shipwright.js"
   },
   "dependencies": {
-    "@npm-wharf/buildgoggles": "^1.0.0",
-    "github-change-remote-file": "^4.2.0",
-    "js-yaml": "^3.8.4",
-    "pequod": "^1.7.4",
-    "replicated-scribe": "^1.0.0",
-    "uuid": "^3.3.2",
-    "when": "^3.7.8",
-    "yargs": "^8.0.1"
+    "@viperidae/pequod": "^1.8.0",
+    "buildgoggles": "^1.0.0",
+    "js-yaml": "^4.1.0",
+    "uuid": "^8.3.2",
+    "yargs": "^17.0.1",
+    "yargs-parser": "^20.2.7"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "coveralls": "^2.13.1",
-    "mocha": "^3.4.1",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^9.0.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^10.3.2",
-    "sinon": "^2.3.0",
-    "sinon-chai": "^2.10.0",
-    "standard": "^10.0.2",
-    "standard-version": "^4.2.0"
+    "nyc": "^15.1.0",
+    "sinon": "^11.1.1",
+    "sinon-chai": "^3.7.0",
+    "standard": "^16.0.3",
+    "standard-version": "^9.3.0"
   },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha spec/*.spec.js",
@@ -37,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/npm-wharf/shipwright.git"
+    "url": "git://github.com/arobson/shipwright.git"
   },
   "keywords": [
     "build",
@@ -47,9 +44,9 @@
   "author": "Alex Robson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/npm-wharf/shipwright/issues"
+    "url": "https://github.com/arobson/shipwright/issues"
   },
-  "homepage": "https://github.com/npm-wharf/shipwright#readme",
+  "homepage": "https://github.com/arobson/shipwright#readme",
   "standard": {
     "env": [
       "mocha"

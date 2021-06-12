@@ -1,9 +1,6 @@
 # shipwright
 A simple/consistent way to create build artifacts with calculated tags and then update related repositories (think packages, tarballs, docker builds, etc.).
 
-[![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
-
 __Why Not Bash?__
 
  * copy pasta'd shell script is tough to maintain, "did I copy that change to all 20+ repos?"
@@ -187,8 +184,3 @@ The build information hash will contain the following properties:
  * separate command so that build and push are represented as different steps
  * add support for additional artifact types
  * support multiple artifact types per build
-
-[travis-url]: https://travis-ci.org/npm-wharf/shipwright
-[travis-image]: https://travis-ci.org/npm-wharf/shipwright.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/npm-wharf/shipwright?branch=master
-[coveralls-image]: https://coveralls.io/repos/github/npm-wharf/shipwright/badge.svg?branch=master
